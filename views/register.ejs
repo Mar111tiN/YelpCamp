@@ -1,0 +1,32 @@
+<% include ./partials/header%>
+    <div class="row justify-content-center">
+        <div class="col-md-12 text-center">
+            <h1>Sign Up</h1>
+        </div>
+        <div class="col-md-4 col-xs-12" style="margin-top: 40px">
+            <form action="/register" method="POST">
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input class="form-control" type="text" id="name" name="username" placeholder="Martin Szyszysszya">
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input class="form-control" type="password" id="password" name="password">
+                </div>
+                <div class="form-group">
+                    <label for="password">Admin Code</label>
+                    <input class="form-control" type="password" id="password" name="adminCode">
+                </div>
+                <div class="form-group">
+                    <button class="btn btn-lg btn-primary btn-block">Sign In</button>
+                </div>
+                
+            </form>
+            <a href="/campgrounds">Go back</a>
+        </div>
+
+    </div>
+
+
+
+<% include ./partials/footer%>

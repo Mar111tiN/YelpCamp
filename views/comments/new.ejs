@@ -1,0 +1,31 @@
+<% include ../partials/header%>
+
+
+    <div class="row justify-content-center">
+
+
+        <div class="col-md-4 col-xs-12" style="margin-top: 40px">
+            <h4>Comments to<%= campground.name %></h4>
+            <% campground.comments.forEach(function(comment) {%>
+                <p>
+                    <strong><%= comment.author.username%></strong> - <%-comment.text%>
+                </p>
+            <%});%>
+            <h4>Add New Comment</h4>
+            <form action="/campgrounds/<%= campground._id %>/comments" method="POST">
+                <div class="form-group">
+                    <label for="comment" class="sr-only">New Comment</label>
+                    <input class="form-control" type="text" id="comment" name="comment[text]" placeholder="What d'ya know">
+                </div>
+                <div class="form-group">
+                    <button class="btn btn-lg btn-primary btn-block">Add  comment</button>
+                </div>
+                
+            </form>
+            <a href="/campgrounds/<%= campground._id %>">Go back</a>
+        </div>
+
+    </div>
+
+
+<% include ../partials/footer%>

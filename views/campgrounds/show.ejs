@@ -1,0 +1,100 @@
+ <% include ../partials/header%>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-3">
+            <p class="lead">YelpCamp</p>
+            <div class="list-group">
+                <li class="list-group-item active">Info1</li>
+                <li class="list-group-item">Info2</li>
+                <li class="list-group-item">Info3</li>
+            </div>
+            <div id="map"></div>
+        </div>
+        <div class="col-md-9">
+            <div class="card">
+                <img class="card-img-top" src="<%= campground.image %>">
+                <div class="card-body">
+                    <h4 class="float-right">$<%= campground.price %> /Night</h4>
+                    <h3 class="card-title"><a href="#"></a><%= campground.name %></h3>
+                    <p><%= campground.description%></p>
+                    <% if(campground.author.username && campground.author.username != '') {%>
+                        <p>
+                            <em>submitted by <%= campground.author.username%></em>                
+                        </p>
+                        <%  if(currentUser && campground.author.id.equals(currentUser._id)) {%>
+                            <a class="btn btn-sm btn-warning" href="/campgrounds/<%= campground._id%>/edit">Edit</a>
+                            <form class="delete" action="/campgrounds/<%= campground._id%>?_method=DELETE" method="POST">
+                                <button class="btn btn-sm btn-danger" href="/campgrounds">
+                                    Delete
+                                </button>
+                            </form>
+                    <% } }%>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <a class="btn btn-success" href="/campgrounds/">Go Back</a> 
+                    <a class="float-right btn btn-success" href="/campgrounds/<%= campground._id %>/comments/new">Add New Comment</a>
+                </div>
+                <div class="card-body">
+                    <% campground.comments.forEach(function(comment) {%>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <strong><%= comment.author.username%></strong>
+                                <span class="float-right">10 days ago</span>
+                                <p>
+                                    <%- comment.text%> 
+                                </p>
+                                <% if(currentUser && comment.author.id.equals(currentUser._id)) {%>
+                                    <a class="btn btn-sm btn-warning" href="/campgrounds/<%= campground._id %>/comments/<%= comment._id %>/edit">Edit</a>
+                                    <form class="delete" action="/campgrounds/<%= campground._id%>/comments/<%= comment._id%>?_method=DELETE" method="POST">
+                                    <button class="btn btn-sm btn-danger" href="/campgrounds">
+                                    Delete
+                                </button>
+                            </form>
+                                <% } %>
+                            </div>
+                        </div>
+                        <hr>
+                    <%});%>                    
+                </div>
+            </div>
+        </div>
+    </div>    
+</div>
+<script>
+    function initMap() {
+        let lat = <%=campground.lat %>;
+        let lng = <%=campground.lng %>;
+        let center = {lat: lat, lng: lng};
+        // Create a map object and specify the DOM element for display.
+        var map = new google.maps.Map(document.getElementById('map'), {
+          center: center,
+          scrollwheel: false,
+          zoom: 8
+        });
+        let contentString = `
+            <strong>
+               <%= campground.name %><br />
+                <%= campground.location %>
+            </strong>
+            <p> <%= campground.description %> </p>
+        `;
+
+        let infowindow = new google.maps.InfoWindow({
+            content: contentString
+        });
+        let marker = new google.maps.Marker({
+            position: center,
+            map: map
+        });
+        marker.addListener('click', () => infowindow.open(map, marker));
+    }
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB8bakwKPFzozdG6RAe7aMLR6k_dp5euog&callback=initMap"
+    async defer>
+        
+</script>
+
+<% include ../partials/footer%>

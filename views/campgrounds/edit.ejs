@@ -1,0 +1,40 @@
+<% include ../partials/header%>
+    <div class="row justify-content-center">
+        <div class="col-md-12 text-center">
+            <h1>Edit <em><%= campground.name %></em></h1>
+        </div>
+        <div class="col-md-4 col-xs-12" style="margin-top: 40px">
+            <form action="/campgrounds/<%= campground._id %>?_method=PUT" method="POST">
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input class="form-control" type="text" id="name" name="campground[name]" value="<%= campground.name %>">
+                </div>
+                <div class="form-group">
+                    <label for="image">Image</label>
+                    <input class="form-control" type="text" id="image" name="campground[image]" value="<%= campground.image %>">
+                </div>
+                <div class="form-group">
+                    <label for="location">Location</label>
+                    <input class="form-control" type="text" id="location" name="campground[location]" value="<%= campground.location %>">
+                </div>
+                <div class="form-group">
+                    <label for="description">Description</label>
+                    <input class="form-control" type="text" id="description" name="campground[description]" value="<%= campground.description %>">
+                </div>
+                <div class="form-group">
+                    <label for="price">Price ($/ Night)</label>
+                    <input class="form-control" type="number" id="price" name="campground[price]" value="<%= campground.price %>" min="0.1" max="250" step='0.1'>
+                </div>
+                <div class="form-group">
+                    <button class="btn btn-lg btn-primary btn-block">Edit campground!</button>
+                </div>
+                
+            </form>
+            <a href="/campgrounds">Go back</a>
+        </div>
+
+    </div>
+
+
+
+<% include ../partials/footer%>

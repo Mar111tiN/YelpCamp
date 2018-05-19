@@ -1,0 +1,17 @@
+body {
+    background: white;
+}
+
+.card {
+    margin-top:20px;
+    padding:0;
+}
+
+.delete {
+    display: inline;
+}
+
+#map {
+    height: 400px;
+    width: 100%;
+}

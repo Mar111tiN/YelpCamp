@@ -1,0 +1,45 @@
+{
+    "folders":
+    [
+        {
+            "path" : "/Users/mahtin/Sites/Udemy/Node/YelpCamp",
+            "name" : "HTML",
+            "follow_symlinks" : false,
+            "folder_exclude_patterns" : ["css", "js", "src", "inc", "node_modules", "scss"],
+            "file_exclude_patterns" : ["*.sublime-project", "*.eslintrc", "*.json", "bootstrap*"]
+        },
+        {
+            "path" : "css",
+            "name" : "CSS",
+            "follow_symlinks" : true,
+            "file_exclude_patterns" : []
+        },
+        {
+            "path" : "scss",
+            "name" : "SASS",
+            "follow_symlinks" : true,
+            "file_exclude_patterns" : ["*.map"]
+        },
+        {
+            "path" : "js",
+            "name" : "JavaScripts",
+            "file_exclude_patterns" : [],
+            "follow_symlinks" : true
+        },
+        {
+            "path" : "/Users/mahtin/Sites/Udemy/Node/YelpCamp",
+            "name" : "setup",
+            "follow_symlinks" : true,
+            "folder_exclude_patterns" : ["css", "js", "src"],
+            "file_exclude_patterns" : ["*.html", "*.js", "*.css"]
+
+        }
+
+    ],
+    "settings" :
+    {
+        "tab_size" : 2,
+        "translate_tabs_to_spaces": true,
+        "detect_indentation": false
+    }
+}
